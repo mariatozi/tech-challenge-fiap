@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Variáveis de ambiente
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados (mantém apenas a pasta)
+data/*
+!data/.gitkeep
+
+# IDEs / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
