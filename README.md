@@ -46,9 +46,3 @@ Para executar um script específico:
 ```bash
 docker run --rm tech-challenge-fiap python scripts/meu_script.py
 ```
-
-## Executando Treinamentos de Imagens (Deep Learning)
-
-```bash
-docker run --rm tech-challenge-fiap jupyter nbconvert --to notebook --execute scripts/TechC1_Imagens.ipynb
-```
