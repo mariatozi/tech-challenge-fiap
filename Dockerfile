@@ -1,17 +1,24 @@
-FROM python:3.12-slim
+FROM python:3.12-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONPATH=/app/src \
+    MPLBACKEND=Agg
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# As dependencias ficam em uma camada separada para aproveitar o cache.
+COPY requirements.txt ./requirements.txt
+RUN python -m pip install -r requirements.txt
 
 COPY src/ ./src/
 COPY scripts/ ./scripts/
 
-ENV PYTHONPATH=/app/src
+# Monte as pastas do computador nestes caminhos durante a execucao.
+RUN mkdir -p /app/data /app/outputs
 
+# O ponto de entrada atual apenas imprime uma mensagem.
+# Substitua o comando no docker run para executar seu script de treinamento.
 CMD ["python", "-m", "tech_challenge.main"]

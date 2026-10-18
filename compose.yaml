@@ -1,0 +1,18 @@
+services:
+  treinamento:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tech-challenge-fiap:local
+    init: true
+    environment:
+      PYTHONPATH: /app/src
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
+        read_only: true
+      - type: bind
+        source: ./outputs
+        target: /app/outputs
+    shm_size: "2gb"
