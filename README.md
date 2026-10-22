@@ -56,3 +56,9 @@ Após alterar o código-fonte ou o arquivo `requirements.txt`, reconstrua a imag
 ```bash
 docker compose build
 ```
+
+Para derrubar a execução do docker, basta executar o comando:
+
+```bash
+docker compose down
+```
