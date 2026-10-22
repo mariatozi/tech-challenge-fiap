@@ -7,12 +7,16 @@ tech-challenge-fiap/
 ├── src/tech_challenge/      # Código-fonte principal (pacote Python)
 │   └── main.py              # Ponto de entrada
 ├── scripts/                 # Scripts avulsos (ETL, automações, etc.)
-├── notebooks/               # Jupyter notebooks de exploração
-│   └── TechC1_Imagens.ipynb # Treinamento Imagens (Deep Learning)
+├── notebooks/
+│   ├── TechC1_Treinamento_Modelos.ipynb  # Modelos tradicionais
+│   └── TechC1_Imagens.ipynb              # Deep Learning
+├── outputs/
 ├── data/                    # Dados locais (ignorados pelo git)
 ├── tests/                   # Testes (pytest)
 ├── requirements.txt         # Dependências
 ├── Dockerfile
+├── compose.yaml
+├── .gitignore
 └── .dockerignore
 ```
 
@@ -33,32 +37,50 @@ jupyter nbconvert --to script notebooks/TechC1_Imagens.ipynb --output TechC1_Ima
 Rename-Item -Path "notebooks\TechC1_Imagens.py.txt" -NewName "TechC1_Imagens.py"
 Start-Process cmd -ArgumentList '/k "set PYTHONPATH=src && .venv\Scripts\activate && python notebooks/TechC1_Imagens.py"'
 ```
+## Rodando Treinamento de Modelos Localmente (Nova Janela de Terminal — Windows)
 
-## Rodando com Docker Compose
+```powershell
+jupyter nbconvert --to script notebooks/TechC1_Treinamento_Modelos.ipynb --output TechC1_Treinamento_Modelos.py
+Rename-Item -Path "notebooks\TechC1_Treinamento_Modelos.py.txt" -NewName "TechC1_Treinamento_Modelos.py"
+Start-Process cmd -ArgumentList '/k "set PYTHONPATH=src && .venv\Scripts\activate && python notebooks/TechC1_Treinamento_Modelos.py"'
 
-Construa a imagem e execute a aplicação:
+## Rodando os treinamentos com Docker Compose
 
-```bash
-docker compose build
-docker compose run --rm treinamento
-```
-
-Para executar um script específico:
-
-```bash
-docker compose run --rm treinamento python scripts/meu_script.py
-```
-
-Os arquivos da pasta `data/` ficam disponíveis no container em `/app/data` como somente leitura. Os resultados gravados em `/app/outputs` são persistidos na pasta `outputs/` do projeto.
-
-Após alterar o código-fonte ou o arquivo `requirements.txt`, reconstrua a imagem:
+### Construir a imagem
 
 ```bash
 docker compose build
-```
 
-Para derrubar a execução do docker, basta executar o comando:
+### Treinamento dos modelos
 
-```bash
+Executa Regressão Logística, Random Forest, XGBoost e a comparação dos modelos:
+
+docker compose run --rm treinamento \
+  jupyter nbconvert --execute --to notebook \
+  --ExecutePreprocessor.timeout=-1 \
+  --output-dir=/app/outputs \
+  /app/notebooks/TechC1_Treinamento_Modelos.ipynb
+
+### Treinamento de imagens
+
+Executa os modelos MobileNet, ResNet50 e EfficientNet:
+
+docker compose run --rm treinamento \
+  jupyter nbconvert --execute --to notebook \
+  --ExecutePreprocessor.timeout=-1 \
+  --output-dir=/app/outputs \
+  /app/notebooks/TechC1_Imagens.ipynb
+
+Os notebooks executados serão gravados na pasta local outputs/.
+
+Os arquivos da pasta data/ ficam disponíveis no container em /app/data como somente leitura.
+
+Após alterar o código, os notebooks ou o arquivo requirements.txt, reconstrua a imagem:
+
+docker compose build
+
+Para interromper um treinamento em execução, pressione Ctrl+C.
+
+Para remover a rede e outros recursos criados pelo Compose:
+
 docker compose down
-```

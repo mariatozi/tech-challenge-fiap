@@ -8,7 +8,6 @@
 **/.ipynb_checkpoints
 .env
 .env.*
-notebooks
 tests
 data
 outputs

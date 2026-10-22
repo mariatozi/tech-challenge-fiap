@@ -1,5 +1,6 @@
 services:
   treinamento:
+    working_dir: /app/outputs
     build:
       context: .
       dockerfile: Dockerfile
