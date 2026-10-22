@@ -43,6 +43,7 @@ Start-Process cmd -ArgumentList '/k "set PYTHONPATH=src && .venv\Scripts\activat
 jupyter nbconvert --to script notebooks/TechC1_Treinamento_Modelos.ipynb --output TechC1_Treinamento_Modelos.py
 Rename-Item -Path "notebooks\TechC1_Treinamento_Modelos.py.txt" -NewName "TechC1_Treinamento_Modelos.py"
 Start-Process cmd -ArgumentList '/k "set PYTHONPATH=src && .venv\Scripts\activate && python notebooks/TechC1_Treinamento_Modelos.py"'
+```
 
 ## Rodando os treinamentos com Docker Compose
 
