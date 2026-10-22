@@ -51,37 +51,46 @@ Start-Process cmd -ArgumentList '/k "set PYTHONPATH=src && .venv\Scripts\activat
 
 ```bash
 docker compose build
+```
 
 ### Treinamento dos modelos
 
 Executa Regressão Logística, Random Forest, XGBoost e a comparação dos modelos:
 
+```bash
 docker compose run --rm treinamento \
   jupyter nbconvert --execute --to notebook \
   --ExecutePreprocessor.timeout=-1 \
   --output-dir=/app/outputs \
   /app/notebooks/TechC1_Treinamento_Modelos.ipynb
+```
 
 ### Treinamento de imagens
 
 Executa os modelos MobileNet, ResNet50 e EfficientNet:
 
+```bash
 docker compose run --rm treinamento \
   jupyter nbconvert --execute --to notebook \
   --ExecutePreprocessor.timeout=-1 \
   --output-dir=/app/outputs \
   /app/notebooks/TechC1_Imagens.ipynb
+```
 
 Os notebooks executados serão gravados na pasta local outputs/.
 
 Os arquivos da pasta data/ ficam disponíveis no container em /app/data como somente leitura.
 
-Após alterar o código, os notebooks ou o arquivo requirements.txt, reconstrua a imagem:
+### Após alterar o código, os notebooks ou o arquivo requirements.txt, reconstrua a imagem:
 
+```bash
 docker compose build
+```
 
 Para interromper um treinamento em execução, pressione Ctrl+C.
 
-Para remover a rede e outros recursos criados pelo Compose:
+### Para remover a rede e outros recursos criados pelo Compose:
 
+```bash
 docker compose down
+```
