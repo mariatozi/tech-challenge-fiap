@@ -1,12 +1,12 @@
 # Tech Challenge FIAP
 
-## Github dos colaboradores do grupo no projeto
+## Colaboradores do Projeto
 
-Gabriel Lopes Guimarães - https://github.com/Gabriel-lgui
-Lucas Muniz Vieira Souto - https://github.com/Zenny-152
-Marcos Pinheiro Moura - https://github.com/newcocas
-Maria Luiza Assumpção Tozi - https://github.com/mariatozi
-Saulo Roberto de Sena - https://github.com/senasaulo
+- **Gabriel Lopes Guimarães** - [GitHub](https://github.com/Gabriel-lgui)
+- **Lucas Muniz Vieira Souto** - [GitHub](https://github.com/Zenny-152)
+- **Marcos Pinheiro Moura** - [GitHub](https://github.com/newcocas)
+- **Maria Luiza Assumpção Tozi** - [GitHub](https://github.com/mariatozi)
+- **Saulo Roberto de Sena** - [GitHub](https://github.com/senasaulo)
 
 ## Estrutura
 
