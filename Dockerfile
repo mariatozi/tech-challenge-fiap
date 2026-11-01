@@ -17,9 +17,7 @@ COPY src/ ./src/
 COPY scripts/ ./scripts/
 COPY notebooks/ ./notebooks/
 
-# Monte as pastas do computador nestes caminhos durante a execucao.
 RUN mkdir -p /app/data /app/outputs
 
 # O ponto de entrada atual apenas imprime uma mensagem.
-# Substitua o comando no docker run para executar seu script de treinamento.
-CMD ["jupyter", "nbconvert", "--execute", "--to", "notebook", "--ExecutePreprocessor.timeout=-1", "--output-dir=/app/outputs", "/app/notebooks/TechC1_Treinamento_Modelos.ipynb"]
+CMD ["jupyter", "nbconvert", "--execute", "--to", "notebook", "--ExecutePreprocessor.timeout=-1", "--output-dir=/app/outputs", "app/notebooks/TechC1_Imagens.ipynb", "app/notebooks/TechC1_Treinamento_Modelos.ipynb"]
