@@ -8,6 +8,11 @@
 - **Maria Luiza Assumpção Tozi** - [GitHub](https://github.com/mariatozi)
 - **Saulo Roberto de Sena** - [GitHub](https://github.com/senasaulo)
 
+## Documentação
+
+[Visualizar ou baixar o PDF](docs/TechChallenge.pdf)
+
+
 ## Estrutura
 
 ```
